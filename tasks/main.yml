@@ -1,18 +1,5 @@
-    - name: Determine if laptop
-      command: laptop-detect
-      register: is_laptop
-      ignore_errors: yes
-
-    - name: Remove Totem media player
-      apt: pkg=totem state=absent
-      become: yes
-
     - name: Install VLC media player
       apt: pkg=vlc
-      become: yes
-
-    - name: Install Clementine music player
-      apt: pkg=clementine
       become: yes
 
     - name: Add spotify apt key
@@ -27,17 +14,12 @@
       apt: pkg=spotify-client update_cache=yes
       become: yes
 
-    - name: Remove rhythmbox music player
-      apt: pkg=rhythmbox state=absent
-      become: yes
-
     - name: Install handbrake video converter
       apt: pkg=handbrake
       become: yes
 
     - name: Install k3b optical disk authoring tool
       apt: pkg=k3b
-      when: is_laptop|failed
       become: yes
 
     - name: Install GIMP photo editor
